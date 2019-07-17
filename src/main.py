@@ -25,7 +25,7 @@ def handle_invalid_usage(error):
 def sitemap():
     return generate_sitemap(app)
 
-@app.route('/person', methods=['POST', 'GET'])
+@app.route('/new', methods=['POST', 'GET'])
 def handle_person():
     """
     Create person and retrieve all persons
