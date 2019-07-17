@@ -31,8 +31,13 @@ def sitemap():
         body = request.get_json()
 
 
+<<<<<<< HEAD
 @app.route('/person', methods=['POST', 'GET'])
 def Add_person():
+=======
+@app.route('/new', methods=['POST', 'GET'])
+def handle_person():
+>>>>>>> 9791bb34dcc348ad13bad851f34c92bf7d06cb28
     """
     Create person and retrieve all persons
     """
