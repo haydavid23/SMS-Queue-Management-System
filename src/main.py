@@ -21,12 +21,18 @@ CORS(app)
 def handle_invalid_usage(error):
     return jsonify(error.to_dict()), error.status_code
 
-@app.route('/')
+@app.route('/new', nethods=["POST"])
 def sitemap():
-    return generate_sitemap(app)
+    """
+    Receives Person Info and Adds it to the Queeue
+    """
+#POST request
+    if request.method == 'POST':
+        body = request.get_json()
+
 
 @app.route('/person', methods=['POST', 'GET'])
-def handle_person():
+def Add_person():
     """
     Create person and retrieve all persons
     """
