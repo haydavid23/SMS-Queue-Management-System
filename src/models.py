@@ -1,7 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
-
+"""
 class Queeue:
 
     def __init__(self, queeue):
@@ -19,13 +19,19 @@ class Queeue:
     def size(self):
         return len(self._queue)
 
-queeue = Queeue ()
+queeue = Queeue (body)
 
 #if request == POST
 queeue.enqueue()
 
 #if request == GET
 queeue.dequeue()
+
+"""
+print("hello")
+
+
+
 
 class Person(db.Model):
     id = db.Column(db.Integer, primary_key=True)

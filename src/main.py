@@ -1,6 +1,3 @@
-"""
-This module takes care of starting the API Server, Loading the DB and Adding the endpoints
-"""
 import os
 from flask import Flask, request, jsonify, url_for
 from flask_migrate import Migrate
@@ -21,23 +18,12 @@ CORS(app)
 def handle_invalid_usage(error):
     return jsonify(error.to_dict()), error.status_code
 
-@app.route('/new', nethods=["POST"])
+@app.route('/')
 def sitemap():
-    """
-    Receives Person Info and Adds it to the Queeue
-    """
-#POST request
-    if request.method == 'POST':
-        body = request.get_json()
+    return generate_sitemap(app)
 
-
-<<<<<<< HEAD
 @app.route('/person', methods=['POST', 'GET'])
-def Add_person():
-=======
-@app.route('/new', methods=['POST', 'GET'])
 def handle_person():
->>>>>>> 9791bb34dcc348ad13bad851f34c92bf7d06cb28
     """
     Create person and retrieve all persons
     """
