@@ -13,6 +13,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 MIGRATE = Migrate(app, db)
 db.init_app(app)
 CORS(app)
+Q1 = Queeue()
 
 @app.errorhandler(APIException)
 def handle_invalid_usage(error):
@@ -23,16 +24,30 @@ def sitemap():
 
     return generate_sitemap(app)
 
-@app.route('/person', methods=['POST', 'GET'])
+@app.route('/person', methods=['POST', 'GET', "DELETE"])
 def handle_person():
-    print("dd")
+
     """
     Create person and retrieve all persons
     """
+     # DELETE request
+    if request.method == 'DELETE':
+        Q1.dequeue()
+        print(repr(Q1._queeue))
+
+        if user1 is None:
+            raise APIException('User not found', status_code=404)
+        db.session.delete(user1)
+        db.session.commit()
 
     # POST request
+
     if request.method == 'POST':
         body = request.get_json()
+
+
+        Q1.enqueue(body["guest"])
+        print(repr(Q1._queeue))
 
         if body is None:
             raise APIException("You need to specify the request body as a json object", status_code=400)
@@ -45,6 +60,7 @@ def handle_person():
         db.session.add(user1)
         db.session.commit()
         return "ok", 200
+
 
     # GET request
     if request.method == 'GET':
