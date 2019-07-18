@@ -14,6 +14,7 @@ MIGRATE = Migrate(app, db)
 db.init_app(app)
 CORS(app)
 Q1 = Queeue()
+# print(repr(Q1._queeue))
 
 @app.errorhandler(APIException)
 def handle_invalid_usage(error):
