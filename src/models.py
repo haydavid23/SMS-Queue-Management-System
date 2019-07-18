@@ -12,6 +12,9 @@ class Queeue:
     def enqueue(self, item):
         self._queeue.append(item)
 
+    def dequeue(self, item):
+        self._queeue.remove(item)
+
     def __repr__(self):
        return (self._queeue)
 
@@ -20,6 +23,7 @@ Q = Queeue()
 Q.enqueue("David")
 Q.enqueue("Hello")
 Q.enqueue("Bye")
+Q.dequeue("David")
 print(repr(Q._queeue))
 
 
