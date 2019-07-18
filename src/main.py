@@ -4,7 +4,7 @@ from flask_migrate import Migrate
 from flask_swagger import swagger
 from flask_cors import CORS
 from utils import APIException, generate_sitemap
-from models import db, Person
+from models import db, Person, Queeue
 
 app = Flask(__name__)
 app.url_map.strict_slashes = False
@@ -20,10 +20,12 @@ def handle_invalid_usage(error):
 
 @app.route('/')
 def sitemap():
+
     return generate_sitemap(app)
 
 @app.route('/person', methods=['POST', 'GET'])
 def handle_person():
+    print("dd")
     """
     Create person and retrieve all persons
     """

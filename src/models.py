@@ -1,34 +1,26 @@
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
-"""
+
+
 class Queeue:
 
-    def __init__(self, queeue):
+    def __init__(self):
         self._queeue = []
         self._mode = "FIFO"
 
     def enqueue(self, item):
-            self._queeue.append(self, body)
+        self._queeue.append(item)
 
-    def dequeue(self, item):
-        self._queeue.pop(self, i)
-    def get_queue(self):
-        queeue.copy()
+    def __repr__(self):
+       return (self._queeue)
 
-    def size(self):
-        return len(self._queue)
 
-queeue = Queeue (body)
-
-#if request == POST
-queeue.enqueue()
-
-#if request == GET
-queeue.dequeue()
-
-"""
-print("hello")
+Q = Queeue()
+Q.enqueue("David")
+Q.enqueue("Hello")
+Q.enqueue("Bye")
+print(repr(Q._queeue))
 
 
 
@@ -46,3 +38,4 @@ class Person(db.Model):
             "username": self.username,
             "email": self.email
         }
+
