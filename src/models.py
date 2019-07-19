@@ -6,7 +6,7 @@ db = SQLAlchemy()
 class Queeue:
 
     def __init__(self):
-        self._queeue = []
+        self._queeue = ["Person 1", "Person 2"]
         self._mode = "FIFO"
 
     def enqueue(self, item):
