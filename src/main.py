@@ -5,6 +5,8 @@ from flask_swagger import swagger
 from flask_cors import CORS
 from utils import APIException, generate_sitemap
 from models import Person, Queeue  # db
+from twilio import twiml
+from twilio.twiml.messaging_response import Message, MessagingResponse
 
 app = Flask(__name__)
 app.url_map.strict_slashes = False
@@ -30,13 +32,22 @@ def handle_person():
 
      # POST request to Add person to queeue.
 
-    if request.method == 'POST':
-        body = request.get_json()
+    number = request.form['From']
+    message_body = request.form['Body']
 
-        Q1.enqueue(body["guest"])
+    if request.method == 'POST':
+        #body = request.get_json()
+
+        Q1.enqueue(message_body)
         print(repr(Q1._queeue))
 
-    return "ok", 200
+    resp = MessagingResponse()
+
+    resp.message("Hello " + message_body + " you have been added."  " There are " + repr(len(Q1._queeue)-1) + " person in front of you.")
+
+    return  str(resp)
+
+    
 
 @app.route('/all', methods=['GET'])
 def handle_get():
