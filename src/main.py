@@ -4,7 +4,7 @@ from flask_migrate import Migrate
 from flask_swagger import swagger
 from flask_cors import CORS
 from utils import APIException, generate_sitemap
-from models import Person, Queeue  # db
+from models import Person, Queeue, Contact # db
 from twilio import twiml
 from twilio.twiml.messaging_response import Message, MessagingResponse
 
@@ -16,6 +16,11 @@ MIGRATE = Migrate(app)  # db)
 # db.init_app(app)
 CORS(app)
 Q1 = Queeue()
+
+
+
+
+
 # print(repr(Q1._queeue))
 
 @app.errorhandler(APIException)
@@ -34,12 +39,16 @@ def handle_person():
 
     number = request.form['From']
     message_body = request.form['Body']
+    C1 = Contact(message_body, number)
 
     if request.method == 'POST':
         #body = request.get_json()
 
-        Q1.enqueue(message_body)
-        print(repr(Q1._queeue))
+        Q1.enqueue(C1)
+
+
+
+    print(repr(Q1._queeue))
 
     resp = MessagingResponse()
 
@@ -47,7 +56,7 @@ def handle_person():
 
     return  str(resp)
 
-    
+
 
 @app.route('/all', methods=['GET'])
 def handle_get():

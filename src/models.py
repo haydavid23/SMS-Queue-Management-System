@@ -2,15 +2,23 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
+class Contact:
+
+    def __init__(self, name, number):
+        self.name = name
+        self.number = number
+
+
+
 
 class Queeue:
 
     def __init__(self):
-        self._queeue = ["Person 1", "Person 2"]
+        self._queeue = []
         self._mode = "FIFO"
 
-    def enqueue(self, item):
-        self._queeue.append(item)
+    def enqueue(self, name):
+        self._queeue.append(name)
 
     def dequeue(self):
         self._queeue.pop(0)
@@ -18,13 +26,15 @@ class Queeue:
     def __repr__(self):
        return (self._queeue)
 
-
+"""
 Q = Queeue()
 Q.enqueue("David")
 Q.enqueue("Hello")
 Q.enqueue("Bye")
-#Q.dequeue("David")
+Q.dequeue("David")
 print(repr(Q._queeue))
+
+"""
 
 
 
