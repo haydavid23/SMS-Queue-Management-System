@@ -8,6 +8,9 @@ class Contact:
         self.name = name
         self.number = number
 
+    def __repr__(self):
+       return (self.name)
+
 
 
 

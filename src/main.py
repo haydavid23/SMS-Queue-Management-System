@@ -6,6 +6,7 @@ from flask_cors import CORS
 from utils import APIException, generate_sitemap
 from models import Person, Queeue, Contact # db
 from twilio import twiml
+from twilio.rest import Client
 from twilio.twiml.messaging_response import Message, MessagingResponse
 
 app = Flask(__name__)
@@ -45,6 +46,7 @@ def handle_person():
         #body = request.get_json()
 
         Q1.enqueue(C1)
+        #print(Q1._queeue[0].number)
 
 
 
@@ -66,7 +68,23 @@ def handle_get():
 
         return repr(Q1._queeue), 200
 
+@app.route('/process', methods=['GET'])
+def process():
 
+
+    account_sid = 'AC099f45babe1d5656b38554a3fae90cc2'
+    auth_token = '029fab71b67c8364d04a53def4dfcc11'
+    client = Client(account_sid, auth_token)
+
+    message = client.messages.create(
+        body='Hi there!',
+        from_='+17868082401',
+        to='+17865532478'
+                          )
+
+    print(message.sid)
+
+    return repr(Q1._queeue[0])
 
 
 @app.route('/next', methods=['DELETE'])
