@@ -77,9 +77,9 @@ def process():
     client = Client(account_sid, auth_token)
 
     message = client.messages.create(
-        body='Hi there!',
+        body='It is your Turn.',
         from_='+17868082401',
-        to='+17865532478'
+        to= Q1._queeue[0].number
                           )
 
     print(message.sid)
