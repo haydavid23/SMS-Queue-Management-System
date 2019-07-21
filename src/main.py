@@ -38,14 +38,17 @@ def handle_person():
 
      # POST request to Add person to queeue.
 
-    number = request.form['From']
-    message_body = request.form['Body']
-    C1 = Contact(message_body, number)
+
 
     if request.method == 'POST':
         #body = request.get_json()
 
-        Q1.enqueue(C1)
+        number = request.form['From']
+        message_body = request.form['Body']
+        C1 = Contact(message_body, number)
+
+
+        Q1.enqueue(repr(C1))
         #print(Q1._queeue[0].number)
 
 
