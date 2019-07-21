@@ -17,7 +17,7 @@ class Contact:
 class Queeue:
 
     def __init__(self):
-        self._queeue = []
+        self._queeue = ["David", "Hay"]
         self._mode = "FIFO"
 
     def enqueue(self, name):

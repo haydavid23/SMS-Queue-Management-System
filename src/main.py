@@ -66,7 +66,9 @@ def handle_get():
     # GET request - Returns everyone that is pending.
     if request.method == 'GET':
 
-        return repr(Q1._queeue), 200
+
+        return jsonify(Q1._queeue), 200
+
 
 @app.route('/process', methods=['GET'])
 def process():
