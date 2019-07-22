@@ -46,10 +46,11 @@ def handle_person():
         number = request.form['From']
         message_body = request.form['Body']
         C1 = Contact(message_body, number)
+       
+        
 
-
-        Q1.enqueue(repr(C1))
-        #print(Q1._queeue[0].number)
+        Q1.enqueue(message_body, number)
+        
 
 
 
@@ -84,7 +85,7 @@ def process():
     message = client.messages.create(
         body='It is your Turn.',
         from_='+17868082401',
-        to= Q1._queeue[0].number
+        to = Q1.numbers[0]
                           )
 
     print(message.sid)
