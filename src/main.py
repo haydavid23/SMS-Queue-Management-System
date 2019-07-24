@@ -46,11 +46,11 @@ def handle_person():
         number = request.form['From']
         message_body = request.form['Body']
         C1 = Contact(message_body, number)
-       
-        
+
+
 
         Q1.enqueue(message_body, number)
-        
+
 
 
 
@@ -79,7 +79,7 @@ def process():
 
 
     account_sid = 'AC099f45babe1d5656b38554a3fae90cc2'
-    auth_token = '029fab71b67c8364d04a53def4dfcc11'
+    auth_token = 'f0e9da1e9346cd9cd09cfdc00e30b53a'
     client = Client(account_sid, auth_token)
 
     message = client.messages.create(
